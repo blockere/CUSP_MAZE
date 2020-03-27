@@ -1,10 +1,12 @@
 package main;
 
+import solver.Solver;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+		Solver solver = new Solver();
+		solver.solveMaze();
 	}
 
 }
