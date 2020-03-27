@@ -57,6 +57,19 @@ public class Maze {
 		facedDirection = directionToTurn;
 	}
 	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < MazeArray.length; i++) {
+			for (int j = 0; j < MazeArray[i].length; i++) {
+				char curChar = MazeArray[i][j];
+				sb.append(" " + curChar + " ");
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
+	
 	private Coordinate findCharInMazeArray(char findMe) {
 		for(int i = 0; i < MazeArray.length; i++) {
 			for(int j = 0; j < MazeArray[i].length; j++) {
