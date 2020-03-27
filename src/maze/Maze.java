@@ -87,6 +87,7 @@ public class Maze {
 				infrontX--;
 				break;
 			case YPOS:infrontY++;
+				infrontY++;
 				break;
 			case YNEG:
 				infrontY--;
