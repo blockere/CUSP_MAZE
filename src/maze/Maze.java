@@ -2,7 +2,15 @@ package maze;
 
 public class Maze {
 	private static Maze Instance = null;
-	private char[][] MazeArray;
+	//XXX Make this not this when enums
+	private char[][] MazeArray = {
+									{'_', '_', '_', '_'},
+									{'|', ' ', 'G', '|'},
+									{'|', 'X', ' ', '|'},
+									{'|', 'X', ' ', '|'},
+									{'|', 'D', ' ', '|'},
+									{'_', '_', '_', '_'} 
+								};
 	
 	private Coordinate droneCurrentPosition;
 	private Coordinate goalPosition;
@@ -20,7 +28,7 @@ public class Maze {
 		// XXX Set mazeArray = to maze enum.value.
 		droneCurrentPosition = findCharInMazeArray('D');
 		goalPosition = findCharInMazeArray('G');
-		facedDirection = Direction.YPOS;
+		facedDirection = Direction.NORTH;
 	}
 	
 	public Coordinate getDroneCurrentCoordinates() {
@@ -37,7 +45,7 @@ public class Maze {
 	
 	public boolean isObjectDetected() {
 		Coordinate infrontSpot = getCoordinateInfrontOfDrone();
-		char infrontChar = MazeArray[infrontSpot.getX()][infrontSpot.getY()];
+		char infrontChar = MazeArray[infrontSpot.getY()][infrontSpot.getX()];
 		return (infrontChar == 'X' || infrontChar == '|' || infrontChar == '_');
 	}
 	
@@ -48,8 +56,8 @@ public class Maze {
 		}
 		
 		Coordinate infront = getCoordinateInfrontOfDrone();
-		MazeArray[infront.getX()][infront.getY()] = 'D';
-		MazeArray[droneCurrentPosition.getX()][droneCurrentPosition.getY()] = ' ';
+		MazeArray[infront.getY()][infront.getX()] = 'D';
+		MazeArray[droneCurrentPosition.getY()][droneCurrentPosition.getX()] = ' ';
 		droneCurrentPosition = infront;
 	}
 	
@@ -60,7 +68,7 @@ public class Maze {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < MazeArray.length; i++) {
-			for (int j = 0; j < MazeArray[i].length; i++) {
+			for (int j = 0; j < MazeArray[i].length; j++) {
 				char curChar = MazeArray[i][j];
 				sb.append(" " + curChar + " ");
 			}
@@ -76,7 +84,7 @@ public class Maze {
 				char value = MazeArray[i][j];
 				
 				if(value == findMe) {
-					return new Coordinate(i, j);
+					return new Coordinate(j, i);
 				}
 			}
 		}
@@ -100,10 +108,10 @@ public class Maze {
 				infrontX--;
 				break;
 			case NORTH:
-				infrontY++;
+				infrontY--;
 				break;
 			case SOUTH:
-				infrontY--;
+				infrontY++;
 				break;
 		}
 		

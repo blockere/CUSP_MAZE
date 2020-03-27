@@ -1,5 +1,6 @@
 package solver;
 
+import maze.Direction;
 import maze.Maze;
 
 public class Solver {
@@ -10,7 +11,7 @@ public class Solver {
 	}
 	
 	public void solveMaze() {
-		
+
 	}
 
 }

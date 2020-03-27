@@ -6,10 +6,10 @@ public enum Direction {
 	NORTH("N"),
 	SOUTH("S");
 	
-	String value;
+	public final String Value;
 	
 	Direction(String val) {
-		value = val;
+		Value = val;
 	}
 
 }
