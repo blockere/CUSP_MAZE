@@ -1,10 +1,23 @@
 package maze;
 
 public class Maze {
-	private char[][] maze;
+	private static Maze Instance = null;
+	private char[][] MazeArray;
 	
-	protected Maze() {
+	public static Maze getInstance() {
+		if(Instance == null) {
+			Instance = new Maze();
+		}
+		
+		return Instance;
+	}
+	
+	private Maze() {
 		
 	}
+	
+	
+	
+	
 
 }
