@@ -93,16 +93,16 @@ public class Maze {
 		int infrontY = currentY;
 		
 		switch(facedDirection) {
-			case XPOS:
+			case EAST:
 				infrontX++;
 				break;
-			case XNEG:
+			case WEST:
 				infrontX--;
 				break;
-			case YPOS:infrontY++;
+			case NORTH:
 				infrontY++;
 				break;
-			case YNEG:
+			case SOUTH:
 				infrontY--;
 				break;
 		}

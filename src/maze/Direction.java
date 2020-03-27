@@ -1,10 +1,10 @@
 package maze;
 
 public enum Direction {
-	XPOS("X+"),
-	XNEG("X-"),
-	YPOS("Y+"),
-	YNEG("Y-");
+	EAST("E"),
+	WEST("W"),
+	NORTH("N"),
+	SOUTH("S");
 	
 	String value;
 	
