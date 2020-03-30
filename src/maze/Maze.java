@@ -1,17 +1,13 @@
 package maze;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public class Maze {
 	private static Maze Instance = null;
-	//XXX Make this not this when enums
-	private char[][] MazeArray = {
-									{'_', '_', '_', '_'},
-									{'|', ' ', 'G', '|'},
-									{'|', 'X', ' ', '|'},
-									{'|', 'X', ' ', '|'},
-									{'|', 'D', ' ', '|'},
-									{'_', '_', '_', '_'} 
-								};
-	
+	private char[][] MazeArray;
 	private Coordinate droneCurrentPosition;
 	private Coordinate goalPosition;
 	private Direction facedDirection;
@@ -25,10 +21,33 @@ public class Maze {
 	}
 	
 	private Maze() {
-		// XXX Set mazeArray = to maze enum.value.
+		MazeArray = getMazeArray();
 		droneCurrentPosition = findCharInMazeArray('D');
 		goalPosition = findCharInMazeArray('G');
 		facedDirection = Direction.NORTH;
+	}
+
+
+	private char[][] getMazeArray(){
+		MazeArrays array = randomMaze();
+		char[][] outer = new char[array.getRows().length][];
+		for (int i = 0; i < array.getRows().length; i++) {
+			Rows row = array.getRows()[i];
+			char[] inner = new char[row.getSpots().length];
+			for (int j = 0; j < row.getSpots().length; j++) {
+				inner[j] = row.getSpots()[j].getMarker();
+			}
+			outer[i] = inner;
+		}
+		return outer;
+	}
+	
+	private static final List<MazeArrays> VALUES = Collections.unmodifiableList(Arrays.asList(MazeArrays.values()));
+	private static final int SIZE = VALUES.size();
+	private static final Random RANDOM = new Random();
+	
+	private static MazeArrays randomMaze()  {
+		return VALUES.get(RANDOM.nextInt(SIZE));
 	}
 	
 	public Coordinate getDroneCurrentCoordinates() {
